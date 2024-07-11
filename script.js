@@ -9,11 +9,14 @@ const time = document.getElementById("time")
 const start = document.getElementById("start")
 const colored = document.getElementById("colored")
 const res = document.getElementById("res")
+const finalscore = document.getElementById("finalscore")
+const score = document.getElementById("score")
 alltiles.forEach(x=> {
     x.style.backgroundColor = `rgb(177, 174, 174)`
 })
 let count = 0
 let flag = true
+let id
 
 
 
@@ -21,19 +24,13 @@ let flag = true
 
 start.addEventListener("click", ()=> {
     
-    if(flag)
-        {
-            time.style.color = "black"
-        }
-    else{
-        time.style.color = "white"
-    }
+    
     alltiles.forEach(x=> {
         x.style.backgroundColor = `rgb(177, 174, 174)`
     })
     count = 0
     colored.textContent = "0"
-    const id = setInterval(()=>{
+    id = setInterval(()=>{
         let val1 = time.textContent
 
         if(val1==0)
@@ -41,11 +38,20 @@ start.addEventListener("click", ()=> {
                 
                 time.textContent = "Game Over"
                 clearInterval(id)
+                finalscore.style.display = "flex"
+                score.textContent = count
+
             }
         else{
             time.textContent = val1-1
         }
     }, 1000)
+
+    
+
+
+
+
 })
 
 reset.addEventListener("click", ()=> {
@@ -55,7 +61,12 @@ reset.addEventListener("click", ()=> {
     alltiles.forEach(x=> {
         x.style.backgroundColor = `rgb(177, 174, 174)`
     })
-    location.reload()
+    count = 0
+    colored.textContent = "0"
+    time.textContent = "30"
+    finalscore.style.display = "none"
+    score.textContent = "0"
+    clearInterval(id)
     
 
 })
@@ -87,8 +98,6 @@ alltiles.forEach(x =>{
             {
                 count+=1
                 colored.textContent = String(count)
-                console.log(count)
-                console.log(String(count))
             }
         x.style.backgroundColor = getColor()
     })
