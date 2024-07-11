@@ -28,6 +28,9 @@ start.addEventListener("click", ()=> {
     else{
         time.style.color = "white"
     }
+    alltiles.forEach(x=> {
+        x.style.backgroundColor = `rgb(177, 174, 174)`
+    })
     const id = setInterval(()=>{
         let val1 = time.textContent
 
